@@ -25,6 +25,7 @@ public class MainActivity extends BaseActivity implements MainView {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainPresenter.getRecipesFromServer();
     }
 
     @Override
@@ -44,6 +45,11 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void getRecipes() {
+
+    }
+
+    @Override
+    public void populateRecipes() {
 
     }
 }
