@@ -1,13 +1,24 @@
-package alruiz.es.recipepuppy.domain.model;
+package alruiz.es.recipepuppy.data.model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Model class for a recipe.
  */
 public class Recipe {
 
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("href")
+    @Expose
     private String href;
+    @SerializedName("ingredients")
+    @Expose
     private String ingredients;
+    @SerializedName("thumbnail")
+    @Expose
     private String thumbnail;
 
     public String getTitle() {

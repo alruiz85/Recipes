@@ -3,23 +3,32 @@ package alruiz.es.recipepuppy.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
- * Model class for a recipe.
+ * Comment.
  */
 public class RecipeResponse {
 
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("version")
+    @Expose
+    private float version;
     @SerializedName("href")
     @Expose
     private String href;
-    @SerializedName("ingredients")
+    @SerializedName("results")
     @Expose
-    private String ingredients;
-    @SerializedName("thumbnail")
-    @Expose
-    private String thumbnail;
+    private List<Recipe> results = null;
+
+    public RecipeResponse(String title, float version, String href, List<Recipe> results) {
+        this.title = title;
+        this.version = version;
+        this.href = href;
+        this.results = results;
+    }
 
     public String getTitle() {
         return title;
@@ -27,6 +36,14 @@ public class RecipeResponse {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public float getVersion() {
+        return version;
+    }
+
+    public void setVersion(float version) {
+        this.version = version;
     }
 
     public String getHref() {
@@ -37,19 +54,12 @@ public class RecipeResponse {
         this.href = href;
     }
 
-    public String getIngredients() {
-        return ingredients;
+    public List<Recipe> getResults() {
+        return results;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setResults(List<Recipe> results) {
+        this.results = results;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
 }

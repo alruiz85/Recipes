@@ -1,7 +1,5 @@
 package alruiz.es.recipepuppy.data.repository.service;
 
-import java.util.List;
-
 import alruiz.es.recipepuppy.data.model.RecipeResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,8 +12,8 @@ import retrofit2.http.Query;
 public interface RecipePuppyService {
 
     @GET("./")
-    Call<List<RecipeResponse>> getRecipes(@Query("i") String ingredient,
-                                          @Query("q") String query,
-                                          @Query("p") int page);
+    Call<RecipeResponse> getRecipes(@Query("i") String ingredient,
+                                    @Query("q") String query,
+                                    @Query("p") int page);
 
 }
