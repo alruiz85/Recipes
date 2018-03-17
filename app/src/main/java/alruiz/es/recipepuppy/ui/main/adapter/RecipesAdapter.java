@@ -6,7 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +27,15 @@ import butterknife.ButterKnife;
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
 
     private Context context;
-
     private List<Recipe> recipes;
 
     @Inject
-    public RecipesAdapter() {
+    RecipesAdapter(Context context) {
         this.recipes = new ArrayList<>();
         this.context = context;
     }
 
+    @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rv_main, parent, false);
@@ -42,9 +45,9 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         holder.tvTitle.setText(recipes.get(position).getTitle());
-        /*Glide.with(context)
-                .load(recipes.get(position).getAvatar_url())
-                .into(holder.userAvatar);*/
+        Glide.with(context)
+                .load(recipes.get(position).getThumbnail())
+                .into(holder.imgThumbnail);
     }
 
     public void setItems(List<Recipe> newsItem) {
@@ -72,6 +75,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
 
         @BindView(R.id.tv_title)
         TextView tvTitle;
+        @BindView(R.id.img_thumbnail)
+        ImageView imgThumbnail;
 
         RecipeViewHolder(View view) {
             super(view);

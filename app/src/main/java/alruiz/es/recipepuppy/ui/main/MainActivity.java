@@ -1,15 +1,16 @@
 package alruiz.es.recipepuppy.ui.main;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ProgressBar;
 
 import javax.inject.Inject;
 
 import alruiz.es.recipepuppy.R;
-import alruiz.es.recipepuppy.data.model.RecipeResponseEntity;
 import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 import alruiz.es.recipepuppy.ui.base.BaseActivity;
 import alruiz.es.recipepuppy.ui.main.adapter.RecipesAdapter;
@@ -50,7 +51,9 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     private void initRecipesAdapter() {
+        DividerItemDecoration itemDecor = new DividerItemDecoration(this, GridLayout.VERTICAL);
         rvRecipes.setAdapter(adapter);
+        rvRecipes.addItemDecoration(itemDecor);
         rvRecipes.setLayoutManager(new LinearLayoutManager(this));
     }
 

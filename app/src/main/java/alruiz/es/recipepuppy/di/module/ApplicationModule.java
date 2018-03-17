@@ -1,10 +1,10 @@
 package alruiz.es.recipepuppy.di.module;
 
-import android.app.Application;
 import android.content.Context;
 
 import javax.inject.Singleton;
 
+import alruiz.es.recipepuppy.App;
 import alruiz.es.recipepuppy.data.repository.api.ApiSourceServer;
 import alruiz.es.recipepuppy.domain.interactor.RecipesInteractor;
 import alruiz.es.recipepuppy.domain.interactor.RecipesInteractorImpl;
@@ -22,20 +22,14 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Context provideContext(Application application) {
-        return application;
+    Context provideContext(App application) {
+        return application.getApplicationContext();
     }
 
     @Provides
     @Singleton
     RecipesInteractor providesRecipesInteractor(ApiSourceServer apiSourceServer) {
         return new RecipesInteractorImpl(apiSourceServer);
-    }
-
-    @Provides
-    @Singleton
-    RecipesAdapter providesRecipesAdapter(){
-        return new RecipesAdapter();
     }
 
 }
