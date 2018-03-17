@@ -19,4 +19,6 @@ public interface MainView extends BaseView {
 
     void populateRecipes(RecipeResponse response);
 
+    void clearRecipes();
+
 }

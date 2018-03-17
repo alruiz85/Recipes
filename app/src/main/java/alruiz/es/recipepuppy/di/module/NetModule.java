@@ -55,7 +55,7 @@ public class NetModule {
 
     @Provides
     @Singleton
-    public RecipePuppyService provideRecipePuppyService(Retrofit retrofit) {
+    RecipePuppyService provideRecipePuppyService(Retrofit retrofit) {
         return retrofit.create(RecipePuppyService.class);
     }
 

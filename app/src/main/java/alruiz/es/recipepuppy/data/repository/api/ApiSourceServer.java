@@ -4,11 +4,11 @@ import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
 
+import alruiz.es.recipepuppy.R;
 import alruiz.es.recipepuppy.data.model.RecipeResponseEntity;
+import alruiz.es.recipepuppy.data.repository.mapper.RecipeResponseMapper;
 import alruiz.es.recipepuppy.data.repository.service.RecipePuppyService;
 import alruiz.es.recipepuppy.domain.listeners.OnItemRetrievedListener;
-import alruiz.es.recipepuppy.domain.model.Recipe;
-import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,10 +19,12 @@ import retrofit2.Response;
 public class ApiSourceServer implements APISource {
 
     private RecipePuppyService service;
+    private RecipeResponseMapper mapper;
 
     @Inject
-    ApiSourceServer(RecipePuppyService service) {
+    ApiSourceServer(RecipePuppyService service, RecipeResponseMapper mapper) {
         this.service = service;
+        this.mapper = mapper;
     }
 
     @Override
@@ -32,15 +34,12 @@ public class ApiSourceServer implements APISource {
         call.enqueue(new Callback<RecipeResponseEntity>() {
             @Override
             public void onResponse(@NonNull Call<RecipeResponseEntity> call, @NonNull Response<RecipeResponseEntity> response) {
-                //TODO Mapper bueno
-                //RecipeResponseEntity r = response.body();
-                //RecipeResponse recipeResponse = new RecipeResponse(r.getTitle(), r.getVersion(), r.getHref(), (Recipe)r.getResults());
-                //listener.onSuccess(recipeResponse);
+                listener.onSuccess(mapper.map(response.body()));
             }
 
             @Override
             public void onFailure(@NonNull Call<RecipeResponseEntity> call, @NonNull Throwable throwable) {
-                //TODO
+                listener.onError(R.string.error_server);
             }
 
         });

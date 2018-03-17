@@ -87,4 +87,9 @@ public class MainActivity extends BaseActivity implements MainView {
         adapter.setItems(response.getResults());
     }
 
+    @Override
+    public void clearRecipes() {
+        adapter.clearItems();
+    }
+
 }

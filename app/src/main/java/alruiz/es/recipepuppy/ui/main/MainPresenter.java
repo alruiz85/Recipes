@@ -26,16 +26,22 @@ public class MainPresenter extends BasePresenter<MainView> {
 
     void getRecipesFromServer(final String query, final int page) {
         getView().showProgressBar();
+
+        getView().clearRecipes();
+
         interactor.execute("", query, page, new OnItemRetrievedListener() {
+
             @Override
             public void onSuccess(RecipeResponse response) {
                 getView().populateRecipes(response);
+
                 getView().hideProgressBar();
             }
 
             @Override
             public void onError(int errorId) {
                 getView().showError(errorId);
+
                 getView().hideProgressBar();
             }
         });

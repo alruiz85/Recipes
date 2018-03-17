@@ -21,6 +21,13 @@ public class Recipe {
     @Expose
     private String thumbnail;
 
+    public Recipe(String title, String href, String ingredients, String thumbnail) {
+        this.title = title;
+        this.href = href;
+        this.ingredients = ingredients;
+        this.thumbnail = thumbnail;
+    }
+
     public String getTitle() {
         return title;
     }

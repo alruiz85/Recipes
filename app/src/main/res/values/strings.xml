@@ -3,4 +3,7 @@
 
     <!-- main -->
     <string name="main_title">Search your favorite recipes</string>
+
+    <!-- error -->
+    <string name="error_server">Error, try again later</string>
 </resources>
