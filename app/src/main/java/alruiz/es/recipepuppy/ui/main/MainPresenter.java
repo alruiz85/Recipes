@@ -47,18 +47,11 @@ public class MainPresenter extends BasePresenter<MainView> {
 
                 @Override
                 public void onSuccess(RecipeResponse response) {
-                    if (response != null) {
-                        Timber.d("%s %s", TAG, response.toString());
-
-                        if (lastQuery.length() > 0 || page > 1 && response.getResults().size() > 0) {
-                            getView().populateRecipes(response);
-                        } else {
-                            getView().clearRecipes();
-                            getView().showStatusMessage();
-                        }
-                    } else {
-                        getView().clearRecipes();
+                    if (response == null || lastQuery.length() == 0) {
                         getView().showStatusMessage();
+                    } else if (response.getResults().size() > 0) {
+                        Timber.d("%s %s", TAG, response.toString());
+                        getView().populateRecipes(response);
                     }
                     getView().hideProgressBar();
                 }
@@ -71,9 +64,6 @@ public class MainPresenter extends BasePresenter<MainView> {
                     getView().showStatusMessage();
                 }
             });
-
-        } else {
-            getView().showStatusMessage();
         }
     }
 
