@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Entity data class for a recipe.
+ * Entity data class for recipe.
  */
 public class RecipeEntity {
 

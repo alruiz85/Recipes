@@ -31,25 +31,31 @@ public class MainPresenter extends BasePresenter<MainView> {
 
     /**
      * Receives and execute query.
+     *
      * @param query query
-     * @param page current page
+     * @param page  current page
      */
-    void getRecipesFromServer(final CharSequence query, final int page) {
-        lastQuery = query.toString();
-        Timber.d("%s %s", TAG, lastQuery);
+    void getRecipesFromServer(final String query, final int page) {
+        Timber.d("%s Query: %s - Page: %s", TAG, lastQuery, page);
 
-        if (lastQuery.length() > 0) {
+        lastQuery = query;
+        if (lastQuery.length() > 0 || page > 1) {
             getView().hideStatusMessage();
             getView().showProgressBar();
-            getView().clearRecipes();
 
             interactor.execute(INGREDIENTS, lastQuery, page, new OnItemRetrievedListener() {
 
                 @Override
                 public void onSuccess(RecipeResponse response) {
-                    Timber.d("%s %s", TAG, response.toString());
-                    if (lastQuery.length() > 0 && response.getResults().size() > 0) {
-                        getView().populateRecipes(response);
+                    if (response != null) {
+                        Timber.d("%s %s", TAG, response.toString());
+
+                        if (lastQuery.length() > 0 || page > 1 && response.getResults().size() > 0) {
+                            getView().populateRecipes(response);
+                        } else {
+                            getView().clearRecipes();
+                            getView().showStatusMessage();
+                        }
                     } else {
                         getView().clearRecipes();
                         getView().showStatusMessage();
@@ -59,17 +65,24 @@ public class MainPresenter extends BasePresenter<MainView> {
 
                 @Override
                 public void onError(int errorId) {
-                    Timber.e("%s %s", TAG, errorId);
                     getView().showError(errorId);
                     getView().clearRecipes();
                     getView().hideProgressBar();
                     getView().showStatusMessage();
                 }
             });
+
         } else {
             getView().clearRecipes();
             getView().showStatusMessage();
         }
+    }
+
+    /**
+     * Clear recipes from recycler view.
+     */
+    void clearRecipes() {
+        getView().clearRecipes();
     }
 
 }

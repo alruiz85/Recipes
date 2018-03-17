@@ -35,12 +35,12 @@ public class MainActivity extends BaseActivity implements MainView {
     @BindView(R.id.pb_main)
     ProgressBar progressBar;
 
-    private String query = "";
-
     @Inject
     MainPresenter mainPresenter;
     @Inject
     RecipesAdapter adapter;
+
+    private String query = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +51,29 @@ public class MainActivity extends BaseActivity implements MainView {
         initRecipesAdapter();
     }
 
+    /**
+     * Initialization and configuration adapter.
+     */
     private void initRecipesAdapter() {
         DividerItemDecoration itemDecor = new DividerItemDecoration(this, GridLayout.VERTICAL);
+        adapter.setView(this);
         rvRecipes.setAdapter(adapter);
         rvRecipes.addItemDecoration(itemDecor);
         rvRecipes.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * Listener onTextChanged for query.
+     * @param sequence charSequence
+     * @param start start
+     * @param count count
+     * @param after after
+     */
     @OnTextChanged(R.id.et_search)
     void onSearch(CharSequence sequence, int start, int count, int after) {
-        mainPresenter.getRecipesFromServer(sequence, FIRST_PAGE);
+        query = sequence.toString();
+        mainPresenter.clearRecipes();
+        mainPresenter.getRecipesFromServer(query, FIRST_PAGE);
     }
 
     @Override

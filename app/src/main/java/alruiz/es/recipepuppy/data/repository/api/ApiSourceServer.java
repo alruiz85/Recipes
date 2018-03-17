@@ -14,7 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Comment.
+ * Data layer source server.
  */
 public class ApiSourceServer implements APISource {
 
@@ -30,7 +30,7 @@ public class ApiSourceServer implements APISource {
     @Override
     public void getRecipes(final String ingredients, final String query, final int page,
                            final OnItemRetrievedListener listener) {
-        Call<RecipeResponseEntity> call = service.getRecipes(ingredients, query, 1);
+        Call<RecipeResponseEntity> call = service.getRecipes(ingredients, query, page);
         call.enqueue(new Callback<RecipeResponseEntity>() {
             @Override
             public void onResponse(@NonNull Call<RecipeResponseEntity> call, @NonNull Response<RecipeResponseEntity> response) {

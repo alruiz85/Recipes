@@ -19,21 +19,30 @@ import javax.inject.Inject;
 
 import alruiz.es.recipepuppy.R;
 import alruiz.es.recipepuppy.domain.model.Recipe;
+import alruiz.es.recipepuppy.ui.main.MainView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Comment.
+ * Adapter for recipes.
  */
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
 
     private Context context;
     private List<Recipe> recipes;
+    private MainView view;
+
+    private final static int RECIPES_PER_PAGE = 10;
+    private int page = 1;
 
     @Inject
     RecipesAdapter(Context context) {
         this.recipes = new ArrayList<>();
         this.context = context;
+    }
+
+    public void setView(MainView view) {
+        this.view = view;
     }
 
     @NonNull
@@ -52,6 +61,11 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
                 .load(recipes.get(position).getThumbnail())
                 .apply(new RequestOptions().placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder))
                 .into(holder.imgThumbnail);
+
+        //Pagination
+        if (position > ((page * RECIPES_PER_PAGE) - 3) && view != null) {
+            view.loadNewPage(++page);
+        }
     }
 
     public void setItems(List<Recipe> newsItem) {
@@ -61,7 +75,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
 
     public void clearItems() {
         recipes.clear();
-        //page = RepositoryImpl.FIRST_PAGE;
+        page = 1;//Reset page
         notifyDataSetChanged();
     }
 
