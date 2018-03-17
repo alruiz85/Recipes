@@ -5,5 +5,6 @@
     <string name="main_title">Search your favorite recipes</string>
 
     <!-- error -->
+    <string name="empty_recipes">Looks like you don\'t have recipes</string>
     <string name="error_server">Error, try again later</string>
 </resources>

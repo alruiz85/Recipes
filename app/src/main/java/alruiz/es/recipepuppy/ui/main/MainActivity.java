@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -31,6 +32,8 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @BindView(R.id.recycler_main)
     RecyclerView rvRecipes;
+    @BindView(R.id.tv_main_message)
+    TextView mainMessage;
     @BindView(R.id.pb_main)
     ProgressBar progressBar;
 
@@ -78,6 +81,16 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showStatusMessage() {
+        mainMessage.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideStatusMessage() {
+        mainMessage.setVisibility(View.INVISIBLE);
     }
 
     @Override

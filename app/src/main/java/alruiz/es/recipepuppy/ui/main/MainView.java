@@ -15,6 +15,10 @@ public interface MainView extends BaseView {
 
     void hideProgressBar();
 
+    void showStatusMessage();
+
+    void hideStatusMessage();
+
     void loadNewPage(int page);
 
     void populateRecipes(RecipeResponse response);
