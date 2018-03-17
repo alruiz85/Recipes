@@ -1,8 +1,6 @@
 package alruiz.es.recipepuppy.ui.main.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,6 +46,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         holder.tvTitle.setText(recipes.get(position).getTitle());
+        holder.tvIngredients.setText(recipes.get(position).getIngredients());
+        holder.tvLink.setText(recipes.get(position).getHref());
         Glide.with(context)
                 .load(recipes.get(position).getThumbnail())
                 .apply(new RequestOptions().placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder))
@@ -81,6 +81,10 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
         TextView tvTitle;
         @BindView(R.id.img_thumbnail)
         ImageView imgThumbnail;
+        @BindView(R.id.tv_ingredients)
+        TextView tvIngredients;
+        @BindView(R.id.tv_link)
+        TextView tvLink;
 
         RecipeViewHolder(View view) {
             super(view);
