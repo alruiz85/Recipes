@@ -39,7 +39,7 @@ public class MainPresenter extends BasePresenter<MainView> {
         Timber.d("%s Query: %s - Page: %s", TAG, lastQuery, page);
 
         lastQuery = query;
-        if (lastQuery.length() > 0 || page > 1) {
+        if (lastQuery.length() > 0) {
             getView().hideStatusMessage();
             getView().showProgressBar();
 
@@ -73,7 +73,6 @@ public class MainPresenter extends BasePresenter<MainView> {
             });
 
         } else {
-            getView().clearRecipes();
             getView().showStatusMessage();
         }
     }
