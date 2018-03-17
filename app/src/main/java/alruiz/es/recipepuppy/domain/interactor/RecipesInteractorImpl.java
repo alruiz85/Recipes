@@ -1,6 +1,7 @@
 package alruiz.es.recipepuppy.domain.interactor;
 
 import alruiz.es.recipepuppy.data.repository.api.ApiSourceServer;
+import alruiz.es.recipepuppy.domain.listeners.OnItemRetrievedListener;
 
 /**
  * Comment.
@@ -15,8 +16,9 @@ public class RecipesInteractorImpl implements RecipesInteractor {
     }
 
     @Override
-    public void execute(final String ingredients, final String query, final int page) {
-        sourceServer.getRecipes(ingredients, query, page);
+    public void execute(final String ingredients, final String query, final int page,
+                        OnItemRetrievedListener listener) {
+        sourceServer.getRecipes(ingredients, query, page, listener);
     }
 
 }

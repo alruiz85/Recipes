@@ -2,18 +2,21 @@ package alruiz.es.recipepuppy.ui.main;
 
 import javax.inject.Inject;
 
+import alruiz.es.recipepuppy.data.model.RecipeResponseEntity;
 import alruiz.es.recipepuppy.domain.interactor.RecipesInteractor;
+import alruiz.es.recipepuppy.domain.listeners.OnItemRetrievedListener;
+import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 import alruiz.es.recipepuppy.ui.base.BasePresenter;
 
 
 /**
- * BasePresenter.
+ * Main presenter.
  *
  * @author AlfonsoRuiz
  */
 public class MainPresenter extends BasePresenter<MainView> {
 
-    RecipesInteractor interactor;
+    private RecipesInteractor interactor;
 
     @Inject
     MainPresenter(MainActivity activity, RecipesInteractor interactor) {
@@ -21,8 +24,21 @@ public class MainPresenter extends BasePresenter<MainView> {
         this.interactor = interactor;
     }
 
-    public void getRecipesFromServer(){
-        interactor.execute("", "", 1);
+    void getRecipesFromServer(final String query, final int page) {
+        getView().showProgressBar();
+        interactor.execute("", query, page, new OnItemRetrievedListener() {
+            @Override
+            public void onSuccess(RecipeResponse response) {
+                getView().populateRecipes(response);
+                getView().hideProgressBar();
+            }
+
+            @Override
+            public void onError(int errorId) {
+                getView().showError(errorId);
+                getView().hideProgressBar();
+            }
+        });
     }
 
 }

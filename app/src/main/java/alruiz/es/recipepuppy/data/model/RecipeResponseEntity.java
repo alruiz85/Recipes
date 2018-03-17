@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Comment.
+ * Entity data class for a recipe response.
  */
-public class RecipeResponse {
+public class RecipeResponseEntity {
 
     @SerializedName("title")
     @Expose
@@ -21,9 +21,9 @@ public class RecipeResponse {
     private String href;
     @SerializedName("results")
     @Expose
-    private List<Recipe> results = null;
+    private List<RecipeEntity> results = null;
 
-    public RecipeResponse(String title, float version, String href, List<Recipe> results) {
+    public RecipeResponseEntity(String title, float version, String href, List<RecipeEntity> results) {
         this.title = title;
         this.version = version;
         this.href = href;
@@ -54,11 +54,11 @@ public class RecipeResponse {
         this.href = href;
     }
 
-    public List<Recipe> getResults() {
+    public List<RecipeEntity> getResults() {
         return results;
     }
 
-    public void setResults(List<Recipe> results) {
+    public void setResults(List<RecipeEntity> results) {
         this.results = results;
     }
 
