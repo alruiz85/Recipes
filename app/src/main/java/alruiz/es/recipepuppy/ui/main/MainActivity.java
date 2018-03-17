@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void showError(int errorId) {
-
+        showToast(getResources().getResourceEntryName(errorId));
     }
 
     @Override

@@ -59,7 +59,7 @@ public class MainPresenter extends BasePresenter<MainView> {
 
                 @Override
                 public void onError(int errorId) {
-                    Timber.e("%s %i", TAG, errorId);
+                    Timber.e("%s %s", TAG, errorId);
                     getView().showError(errorId);
                     getView().clearRecipes();
                     getView().hideProgressBar();
