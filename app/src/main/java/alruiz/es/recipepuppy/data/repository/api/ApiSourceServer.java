@@ -1,7 +1,5 @@
 package alruiz.es.recipepuppy.data.repository.api;
 
-import android.support.annotation.NonNull;
-
 import javax.inject.Inject;
 
 import alruiz.es.recipepuppy.R;
@@ -33,12 +31,12 @@ public class ApiSourceServer implements APISource {
         Call<RecipeResponseEntity> call = service.getRecipes(ingredients, query, page);
         call.enqueue(new Callback<RecipeResponseEntity>() {
             @Override
-            public void onResponse(@NonNull Call<RecipeResponseEntity> call, @NonNull Response<RecipeResponseEntity> response) {
+            public void onResponse(Call<RecipeResponseEntity> call, Response<RecipeResponseEntity> response) {
                 listener.onSuccess(mapper.map(response.body()));
             }
 
             @Override
-            public void onFailure(@NonNull Call<RecipeResponseEntity> call, @NonNull Throwable throwable) {
+            public void onFailure(Call<RecipeResponseEntity> call, Throwable throwable) {
                 listener.onError(R.string.error_server);
             }
 

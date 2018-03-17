@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Entity data class for a recipe response.
+ * Entity data class for recipe response.
  */
 public class RecipeResponseEntity {
 

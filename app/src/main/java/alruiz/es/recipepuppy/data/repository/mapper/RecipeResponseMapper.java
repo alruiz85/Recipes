@@ -6,7 +6,7 @@ import alruiz.es.recipepuppy.data.model.RecipeResponseEntity;
 import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 
 /**
- * Comment.
+ * Map RecipeResponse.
  */
 public class RecipeResponseMapper extends BaseMapper<RecipeResponseEntity, RecipeResponse> {
 

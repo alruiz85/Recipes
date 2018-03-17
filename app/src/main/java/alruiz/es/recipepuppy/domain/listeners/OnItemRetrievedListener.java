@@ -3,9 +3,8 @@ package alruiz.es.recipepuppy.domain.listeners;
 import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 
 /**
- * Listener.
+ * Listener for items retrieved from server.
  */
-
 public interface OnItemRetrievedListener {
 
     void onSuccess(RecipeResponse item);

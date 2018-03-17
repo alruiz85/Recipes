@@ -3,7 +3,7 @@ package alruiz.es.recipepuppy.domain.interactor;
 import alruiz.es.recipepuppy.domain.listeners.OnItemRetrievedListener;
 
 /**
- * Comment.
+ * Recipes interactor.
  */
 public interface RecipesInteractor {
 

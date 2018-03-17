@@ -1,7 +1,7 @@
 package alruiz.es.recipepuppy.domain.model;
 
 /**
- * Model class for a recipe.
+ * Model class for recipe.
  */
 public class Recipe {
 

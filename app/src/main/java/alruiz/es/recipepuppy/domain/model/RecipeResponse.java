@@ -3,7 +3,7 @@ package alruiz.es.recipepuppy.domain.model;
 import java.util.List;
 
 /**
- * Comment.
+ * Model class por RecipeResponse.
  */
 public class RecipeResponse {
 

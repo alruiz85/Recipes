@@ -4,7 +4,7 @@ import alruiz.es.recipepuppy.data.repository.api.ApiSourceServer;
 import alruiz.es.recipepuppy.domain.listeners.OnItemRetrievedListener;
 
 /**
- * Comment.
+ * Interactor implementation.
  */
 
 public class RecipesInteractorImpl implements RecipesInteractor {

@@ -5,7 +5,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 /**
- * ActivityBuilder.
+ * ActivityBuilder for new AndroidInjector.
  *
  * @author AlfonsoRuiz
  */
