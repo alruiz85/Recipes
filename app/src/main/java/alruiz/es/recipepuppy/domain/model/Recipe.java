@@ -1,24 +1,13 @@
 package alruiz.es.recipepuppy.domain.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Model class for a recipe.
  */
 public class Recipe {
 
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("href")
-    @Expose
     private String href;
-    @SerializedName("ingredients")
-    @Expose
     private String ingredients;
-    @SerializedName("thumbnail")
-    @Expose
     private String thumbnail;
 
     public Recipe(String title, String href, String ingredients, String thumbnail) {
@@ -58,5 +47,15 @@ public class Recipe {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "title='" + title + '\'' +
+                ", href='" + href + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                '}';
     }
 }

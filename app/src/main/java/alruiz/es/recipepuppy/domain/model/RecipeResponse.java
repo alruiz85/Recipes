@@ -1,28 +1,15 @@
 package alruiz.es.recipepuppy.domain.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
-
-import alruiz.es.recipepuppy.data.model.RecipeEntity;
 
 /**
  * Comment.
  */
 public class RecipeResponse {
 
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("version")
-    @Expose
     private float version;
-    @SerializedName("href")
-    @Expose
     private String href;
-    @SerializedName("results")
-    @Expose
     private List<Recipe> results = null;
 
     public RecipeResponse(String title, float version, String href, List<Recipe> results) {
@@ -64,4 +51,13 @@ public class RecipeResponse {
         this.results = results;
     }
 
+    @Override
+    public String toString() {
+        return "RecipeResponse{" +
+                "title='" + title + '\'' +
+                ", version=" + version +
+                ", href='" + href + '\'' +
+                ", results=" + results +
+                '}';
+    }
 }

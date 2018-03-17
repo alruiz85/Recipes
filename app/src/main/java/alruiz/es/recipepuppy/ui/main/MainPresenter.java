@@ -6,6 +6,7 @@ import alruiz.es.recipepuppy.domain.interactor.RecipesInteractor;
 import alruiz.es.recipepuppy.domain.listeners.OnItemRetrievedListener;
 import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 import alruiz.es.recipepuppy.ui.base.BasePresenter;
+import timber.log.Timber;
 
 
 /**
@@ -15,7 +16,12 @@ import alruiz.es.recipepuppy.ui.base.BasePresenter;
  */
 public class MainPresenter extends BasePresenter<MainView> {
 
+    private final String TAG = "MainPresenter: ";
+    private final String INGREDIENTS = "";
+
     private RecipesInteractor interactor;
+
+    private String lastQuery;
 
     @Inject
     MainPresenter(MainActivity activity, RecipesInteractor interactor) {
@@ -23,22 +29,37 @@ public class MainPresenter extends BasePresenter<MainView> {
         this.interactor = interactor;
     }
 
-    void getRecipesFromServer(final String query, final int page) {
-        if (query.length() > 0) {
+    /**
+     * Receives and execute query.
+     * @param query query
+     * @param page current page
+     */
+    void getRecipesFromServer(final CharSequence query, final int page) {
+        lastQuery = query.toString();
+        Timber.d("%s %s", TAG, lastQuery);
+
+        if (lastQuery.length() > 0) {
             getView().hideStatusMessage();
             getView().showProgressBar();
             getView().clearRecipes();
 
-            interactor.execute("", query, page, new OnItemRetrievedListener() {
+            interactor.execute(INGREDIENTS, lastQuery, page, new OnItemRetrievedListener() {
 
                 @Override
                 public void onSuccess(RecipeResponse response) {
-                    getView().populateRecipes(response);
+                    Timber.d("%s %s", TAG, response.toString());
+                    if (lastQuery.length() > 0 && response.getResults().size() > 0) {
+                        getView().populateRecipes(response);
+                    } else {
+                        getView().clearRecipes();
+                        getView().showStatusMessage();
+                    }
                     getView().hideProgressBar();
                 }
 
                 @Override
                 public void onError(int errorId) {
+                    Timber.e("%s %i", TAG, errorId);
                     getView().showError(errorId);
                     getView().clearRecipes();
                     getView().hideProgressBar();

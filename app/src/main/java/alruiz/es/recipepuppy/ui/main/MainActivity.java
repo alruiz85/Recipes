@@ -18,7 +18,6 @@ import alruiz.es.recipepuppy.ui.main.adapter.RecipesAdapter;
 import butterknife.BindView;
 import butterknife.OnTextChanged;
 import dagger.android.AndroidInjection;
-import timber.log.Timber;
 
 /**
  * MainActivity.
@@ -27,7 +26,6 @@ import timber.log.Timber;
  */
 public class MainActivity extends BaseActivity implements MainView {
 
-    private static String TAG = "MainActivity: ";
     private static final int FIRST_PAGE = 1;
 
     @BindView(R.id.recycler_main)
@@ -62,10 +60,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @OnTextChanged(R.id.et_search)
     void onSearch(CharSequence sequence, int start, int count, int after) {
-        Timber.d("%s%s", TAG, sequence);
-
-        query = sequence.toString();
-        mainPresenter.getRecipesFromServer(query, FIRST_PAGE);
+        mainPresenter.getRecipesFromServer(sequence, FIRST_PAGE);
     }
 
     @Override
