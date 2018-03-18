@@ -47,7 +47,7 @@ public class MainPresenter extends BasePresenter<MainView> {
 
                 @Override
                 public void onSuccess(RecipeResponse response) {
-                    if (response == null || lastQuery.length() == 0) {
+                    if (response == null || lastQuery.length() == 0 || response.getResults().size() == 0) {
                         getView().showStatusMessage();
                     } else if (response.getResults().size() > 0) {
                         Timber.d("%s %s", TAG, response.toString());
@@ -72,6 +72,13 @@ public class MainPresenter extends BasePresenter<MainView> {
      */
     void clearRecipes() {
         getView().clearRecipes();
+    }
+
+    /**
+     * Show status messages, no recipes.
+     */
+    void showStatusMessage() {
+        getView().showStatusMessage();
     }
 
 }

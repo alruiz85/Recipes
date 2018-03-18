@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity implements MainView {
     void onSearch(CharSequence sequence, int start, int count, int after) {
         query = sequence.toString();
         mainPresenter.clearRecipes();
+        mainPresenter.showStatusMessage();
         mainPresenter.getRecipesFromServer(query, FIRST_PAGE);
     }
 
