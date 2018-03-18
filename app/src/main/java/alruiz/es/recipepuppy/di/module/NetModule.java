@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import javax.inject.Singleton;
 
 import alruiz.es.recipepuppy.BuildConfig;
+import alruiz.es.recipepuppy.data.repository.service.RecipePuppyService;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -51,5 +52,12 @@ public class NetModule {
                 .client(okHttpClient)
                 .build();
     }
+
+    @Provides
+    @Singleton
+    RecipePuppyService provideRecipePuppyService(Retrofit retrofit) {
+        return retrofit.create(RecipePuppyService.class);
+    }
+
 
 }

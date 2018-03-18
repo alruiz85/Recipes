@@ -23,19 +23,34 @@ public class App extends Application implements HasActivityInjector {
     @Override
     public void onCreate() {
         super.onCreate();
+        initLog();
+        initDagger();
+    }
 
-        //Log-Timber
+    /**
+     * Timber initialization.
+     */
+    private void initLog() {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+    }
 
-        //Dagger2 builder
+    /**
+     * Dagger initialization build.
+     */
+    private void initDagger() {
         DaggerApplicationComponent.builder()
                 .application(this)
                 .build()
                 .inject(this);
     }
 
+    /**
+     * Activity injector.
+     *
+     * @return AndroidInjector<Activity>
+     */
     @Override
     public AndroidInjector<Activity> activityInjector() {
         return dispatchingAndroidInjector;

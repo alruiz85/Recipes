@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Text styles -->
+    <style name="HeaderTextStyle" parent="android:Widget.TextView">
+        <item name="android:textSize">@dimen/font_subheading</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyTextStyle" parent="android:Widget.TextView">
+        <item name="android:textSize">@dimen/font_body</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="LinkTextStyle" parent="android:Widget.TextView">
+        <item name="android:textSize">@dimen/font_link</item>
+        <item name="android:autoLink">web</item>
+    </style>
+
 </resources>

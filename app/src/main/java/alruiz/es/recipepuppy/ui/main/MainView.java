@@ -1,6 +1,7 @@
 package alruiz.es.recipepuppy.ui.main;
 
 
+import alruiz.es.recipepuppy.domain.model.RecipeResponse;
 import alruiz.es.recipepuppy.ui.base.BaseView;
 
 /**
@@ -14,6 +15,14 @@ public interface MainView extends BaseView {
 
     void hideProgressBar();
 
-    void getRecipes();
+    void showStatusMessage();
+
+    void hideStatusMessage();
+
+    void loadNewPage(int page);
+
+    void populateRecipes(RecipeResponse response);
+
+    void clearRecipes();
 
 }
