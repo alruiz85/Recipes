@@ -35,7 +35,7 @@ ext {
 
     //Dependencies
     supportLibraryVersion = '27.1.1'
-    constraitLayout = '1.0.2'
+    constraitLayout = '1.1.1'
     junitVersion = '4.12'
     runnerVersion = '1.0.1'
     mockitoVersion = '1.10.19'
