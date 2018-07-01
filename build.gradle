@@ -34,8 +34,8 @@ ext {
     buildToolsVersion = '26.0.2'
 
     //Dependencies
-    supportLibraryVersion = '27.1.0'
-    constraitLayout = '1.0.2'
+    supportLibraryVersion = '27.1.1'
+    constraitLayout = '1.1.1'
     junitVersion = '4.12'
     runnerVersion = '1.0.1'
     mockitoVersion = '1.10.19'
@@ -46,7 +46,7 @@ ext {
     gsonVersion = '2.8.2'
     retrofitVersion = '2.3.0'
     okhttpVersion = "3.6.0"
-    glideVersion = '4.6.1'
+    glideVersion = '4.7.1'
     timberVersion = '4.6.1'
 }
 
